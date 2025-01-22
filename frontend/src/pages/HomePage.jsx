@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import { SearchContext } from "../context/SearchContext";
 import searchSongPng from "../assets/images/search-song.png";
 
-const HomePage = ({ songs, currentUser, handleLogout }) => {
+const HomePage = ({ currentUser, handleLogout }) => {
   const {
     query,
     setQuery,

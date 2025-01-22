@@ -5,13 +5,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { songs as initialSongs, users } from "./data/mockData";
 import HomePage from "./pages/HomePage";
 import SongDetailsPage from "./pages/SongDetailsPage";
 import AuthPage from "./pages/AuthPage";
 
 function App() {
-  const [songs, setSongs] = useState(initialSongs);
   const [currentUser, setCurrentUser] = useState(null);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
@@ -40,12 +38,7 @@ function App() {
           path="/"
           element={
             currentUser ? (
-              <HomePage
-                songs={songs}
-                setSongs={setSongs}
-                currentUser={currentUser}
-                handleLogout={handleLogout}
-              />
+              <HomePage currentUser={currentUser} handleLogout={handleLogout} />
             ) : (
               <Navigate to="/auth" />
             )
@@ -56,7 +49,6 @@ function App() {
           element={
             currentUser ? (
               <SongDetailsPage
-                users={users}
                 onSetCurrentUser={setCurrentUser}
                 currentUser={currentUser}
                 handleLogout={handleLogout}

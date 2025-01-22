@@ -94,42 +94,4 @@ const getCommentsBySong = async (req, res) => {
   }
 };
 
-// Delete a comment or a reply
-const deleteComment = async (req, res) => {
-  try {
-    const { commentId, replyId } = req.body;
-
-    if (replyId) {
-      // Case: Deleting a reply from a comment
-      const updatedComment = await Comment.findByIdAndUpdate(
-        commentId,
-        { $pull: { replies: { _id: replyId } } }, // Pull the reply by ID from the replies array
-        { new: true }
-      );
-
-      if (!updatedComment) {
-        return res.status(404).json({ message: "Comment or reply not found" });
-      }
-
-      return res.status(200).json({
-        message: "Reply deleted successfully",
-        comment: updatedComment,
-      });
-    } else {
-      // Case: Deleting a top-level comment (including all its replies)
-      const deletedComment = await Comment.findByIdAndDelete(commentId);
-
-      if (!deletedComment) {
-        return res.status(404).json({ message: "Comment not found" });
-      }
-
-      return res.status(200).json({
-        message: "Comment deleted successfully",
-      });
-    }
-  } catch (error) {
-    res.status(500).json({ message: "Error deleting comment or reply", error });
-  }
-};
-
-module.exports = { addComment, addReply, getCommentsBySong, deleteComment };
+module.exports = { addComment, addReply, getCommentsBySong };
