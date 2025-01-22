@@ -4,7 +4,7 @@ A feature-rich music application built using the MERN stack. The app provides JW
 
 ![image](https://github.com/user-attachments/assets/af9a068e-c04e-4fb1-a297-b0a80919428b)
 
-![image](https://github.com/user-attachments/assets/32fe69a7-5d5b-4b64-9b49-11985253e003)
+![image](https://github.com/user-attachments/assets/a8302afd-e8c9-4331-89df-8793d36c95bc)
 
 ![image](https://github.com/user-attachments/assets/ee8eff75-5ab0-451d-b5b1-7c857949d0f1)
 
