@@ -1,8 +1,8 @@
-import { Music, MessageCircle } from "lucide-react";
+import { Music } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { formatDuration } from "../utils/helper-functions";
 
-const SongCard = ({ song, currentUser }) => {
+const SongCard = ({ song }) => {
   const navigate = useNavigate();
   const handleSelectSong = (song) => {
     navigate(`/song/${song.id}`);
@@ -33,22 +33,6 @@ const SongCard = ({ song, currentUser }) => {
           <p className="text-gray-500 text-sm mt-2">
             {formatDuration(song.duration)}
           </p>
-        </div>
-
-        <div className="mt-4 flex items-center justify-end">
-          <button
-            onClick={() => currentUser}
-            className={`flex items-center space-x-1 ${
-              currentUser ? "cursor-pointer" : "cursor-not-allowed"
-            }`}
-            disabled={!currentUser}
-            title={`${song.commentCount || 0} Comments`}
-          >
-            <div className="flex items-center space-x-1 text-gray-500">
-              <MessageCircle size={20} />
-              <span>{song.commentCount || 0}</span>
-            </div>
-          </button>
         </div>
       </div>
     </div>
