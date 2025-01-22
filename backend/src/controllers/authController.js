@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-exports.register = async (req, res, next) => {
+const register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     const user = new User({ name, email, password });
@@ -19,7 +19,7 @@ exports.register = async (req, res, next) => {
   }
 };
 
-exports.login = async (req, res, next) => {
+const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     // Exclude password from the result
@@ -40,11 +40,21 @@ exports.login = async (req, res, next) => {
   }
 };
 
-exports.getProfile = async (req, res, next) => {
+const getProfile = async (req, res, next) => {
   try {
-    const user = await User.findById(req.id).select("-password");
-    res.status(200).json(user);
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User not found", id: req.user.id });
+    }
+    // Convert the user document to a plain object and remove the password
+    const userWithoutPassword = user.toObject();
+    delete userWithoutPassword.password;
+    res.status(200).json({ user: userWithoutPassword });
   } catch (err) {
     next(err);
   }
 };
+
+module.exports = { register, login, getProfile };

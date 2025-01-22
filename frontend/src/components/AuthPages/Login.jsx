@@ -3,6 +3,7 @@ import { Mail, Lock, Music } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { fetch } from "../../services/fetch";
 import { showToast } from "../../utils/toast";
+import backgroundImage from "../../assets/images/background.jpg";
 
 const Login = ({ onSetCurrentUser, onSwitchToRegister }) => {
   const [email, setEmail] = useState("");
@@ -23,6 +24,7 @@ const Login = ({ onSetCurrentUser, onSwitchToRegister }) => {
         throw new Error(response.message);
       }
       sessionStorage.setItem("user", JSON.stringify(response.user));
+      sessionStorage.setItem("token", response.token);
       const user = response.user;
       onSetCurrentUser(user);
       navigate("/");
@@ -34,7 +36,15 @@ const Login = ({ onSetCurrentUser, onSwitchToRegister }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-600 via-pink-500 to-red-500 flex items-center justify-center">
+    <div
+      className="min-h-screen flex items-center justify-center"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="bg-white/90 p-8 rounded-xl shadow-lg w-full max-w-sm">
         <div className="flex justify-center mb-6">
           <Music size={40} className="text-purple-600" />

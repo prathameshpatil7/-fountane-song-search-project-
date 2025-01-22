@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const authRoutes = require("./src/routes/authRoutes");
+const songRoutes = require("./src/routes/songRoutes");
+const commentRoutes = require("./src/routes/commentRoutes");
 
 const app = express();
 
@@ -22,6 +24,8 @@ mongoose
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/songs", songRoutes);
+app.use("/api/comments", commentRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

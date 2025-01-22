@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Mail, Lock, User, Music } from "lucide-react";
 import { showToast } from "../../utils/toast";
 import { fetch } from "../../services/fetch";
+import backgroundImage from "../../assets/images/background.jpg";
 
 const Register = ({ onSwitchToLogin }) => {
   const [name, setName] = useState("");
@@ -30,7 +31,15 @@ const Register = ({ onSwitchToLogin }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-600 via-pink-500 to-red-500 flex items-center justify-center">
+    <div
+      className="min-h-screen flex items-center justify-center"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="bg-white/90 p-8 rounded-xl shadow-lg w-full max-w-sm">
         <div className="flex justify-center mb-6">
           <Music size={40} className="text-purple-600" />

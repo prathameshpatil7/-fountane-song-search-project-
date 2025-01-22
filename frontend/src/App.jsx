@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { songs as initialSongs, comments, users } from "./data/mockData";
+import { songs as initialSongs, users } from "./data/mockData";
 import HomePage from "./pages/HomePage";
 import SongDetailsPage from "./pages/SongDetailsPage";
 import AuthPage from "./pages/AuthPage";
@@ -56,11 +56,10 @@ function App() {
           element={
             currentUser ? (
               <SongDetailsPage
-                songs={songs}
-                comments={comments}
                 users={users}
                 onSetCurrentUser={setCurrentUser}
                 currentUser={currentUser}
+                handleLogout={handleLogout}
               />
             ) : (
               <Navigate to="/auth" />
